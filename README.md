@@ -22,24 +22,25 @@ public class Sword
 
 ### ProgB2.java
 ```java
-public class ProgB1 {
+public class ProgB2 {
     public static void main(String[] args) {
-    	Hero h = new Hero();
+        Hero h = new Hero();
         h.name = "太郎";
         h.hp = 100;
 
         System.out.println("勇者" + h.name + " (HP:" + h.hp + ") が誕生した!");
-        
-        Sword sword = new Sword();
-        sword.name = "こんぼう";
+
+        Sword sword = new Sword("こんぼう");
         h.sword = sword;
-        
+
         System.out.println("勇者は" + h.sword.name + "を装備した!");
     }
 }
+
 ```
 
 ### 実行例
 ```
 勇者太郎 (HP:100) が誕生した!
+勇者はこんぼうを装備した!
 ```

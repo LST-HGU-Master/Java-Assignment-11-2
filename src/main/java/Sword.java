@@ -1,22 +1,10 @@
 public class Sword
 {
-    private String name; // 剣の名前
+    String name; // 剣の名前
 
-    public Sword(String namae)
+    public Sword(String name)
     {
-        //コンストラクタでも入力チェックをするためにsetterメソッドを使用する
-        setName(namae);
+        this.name = name;
     }
 
-    public String getName(){
-        return this.name;
-    }
-
-    public void setName(String newNamae){
-        if(newNamae.length() <= 2) {
-            this.name = "名無し剣";
-        } else {
-            this.name = newNamae;
-        }
-    }
 }
