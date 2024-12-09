@@ -6,6 +6,7 @@ import java.lang.reflect.Modifier;
 
 import static org.junit.jupiter.api.Assertions.*;
 /**
+ * @version (20241209) testSetter()とtestGetterのエラーメッセージを訂正
  * @version (20220608)
  */
 public class HeroTest {
@@ -33,14 +34,14 @@ public class HeroTest {
             Method setSword = h.getClass().getMethod("setSword", Sword.class);
             setSword.invoke(h, s);
 
-            Field sword = h.getClass().getDeclaredField("sword");
+            Field sword = h.getClass().getDeclaredField("sword"); // swordクラス以外は例外発生
 
             sword.setAccessible(true);
 
             assertEquals(s, sword.get(h),"SwordクラスのsetSword()の処理が不正です!");
 
-        } catch (NoSuchMethodException nsme) {
-            fail("HeroクラスにsetSword(String 変数名)が定義されていない、もしくはpublic宣言されていません! ");
+        } catch (NoSuchMethodException nsme) { // 2024Dec9 エラーメッセージを訂正
+            fail("HeroクラスにsetSword(Sword 変数名)が定義されていない、もしくはpublic宣言されていません! ");
         } catch (IllegalAccessException iae) {
             // クラスが public でなかったり、別のパッケージに入っていたりするために、実行中のメソッドが指定されたクラスの定義にアクセスできない場合にスローされる例外
             fail("HeroクラスのsetSword()がpublic宣言されていません! ");
@@ -67,8 +68,8 @@ public class HeroTest {
 
             assertEquals(s, getSword.invoke(h), "Hero.getSwordの戻り値が不正です!");
 
-        } catch (NoSuchMethodException nsme) {
-            fail("HeroクラスにgetSword()が定義されていない、もしくはpublic宣言されていません! ");
+        } catch (NoSuchMethodException nsme) { // 2024Dec9 エラーメッセージを訂正 
+            fail("HeroクラスでsetSword（）が不正、またはgetSword()が定義されていない、もしくはpublic宣言されていません! ");
         } catch (IllegalAccessException iae) {
             fail("HeroクラスのgetSword()がpublic宣言されていません! ");
         } catch (java.lang.reflect.InvocationTargetException ite) {
